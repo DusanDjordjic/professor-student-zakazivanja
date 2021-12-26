@@ -11,6 +11,8 @@ import { Zakljucan } from './enums/stanje-zakljucanosti.enum';
 export class AppComponent implements OnInit {
   stanja = Stanja;
   zakljucan = Zakljucan;
+  profesorovaCenaJednogCasa = 10;
+  brojZakazanihCasova = 0;
   korisnik = '0';
   danasnjiDan = new Date(new Date().toLocaleDateString());
   nedelja: Dan[] = [];
@@ -64,9 +66,11 @@ export class AppComponent implements OnInit {
         this.nedelja[danIndex].termini[terminIndex].stanje === Stanja.SLOBODAN
       ) {
         this.nedelja[danIndex].termini[terminIndex].stanje = Stanja.ZAKAZAN;
+        this.brojZakazanihCasova++;
       } else if (
         this.nedelja[danIndex].termini[terminIndex].stanje === Stanja.ZAKAZAN
       ) {
+        this.brojZakazanihCasova--;
         this.nedelja[danIndex].termini[terminIndex].stanje = Stanja.SLOBODAN;
       }
     }
